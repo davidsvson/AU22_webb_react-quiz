@@ -1,30 +1,46 @@
 import { useState } from "react";
 
-const Game = () => {
+const Game = (props) => {
     const questions = getQuestions();
 
     const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [selectedAnswer, setSelectedAnswer ] = useState(null);
+
+
  
     let question = questions[currentQuestion];
 
-    console.log(question.answers);
+    const handleDecided = () =>  {
+        if (selectedAnswer === question.correct) {
+            console.log("Rätt!!")
+            props.answeredCorrectly();
+        }
+        
+        if ( currentQuestion < questions.length - 1) {
+            setCurrentQuestion(currentQuestion + 1);
+        } else {
+            props.showResult();
+        }
+
+
+    }
 
     const options = question.answers.map((answer, index) => (
             <p className="option" key={index}>
                 <label>
-                    <input type="radio" /> {answer}
+                    <input type="radio" name="question" onClick={() => setSelectedAnswer(index)}/> {answer}
                 </label>
             </p>
         )
     )    
 
-    console.log(options);
+   
 
     return (
         <section>
             <h3>{question.question}</h3>
             {options}
-            <button>Answer</button>
+            <button onClick={handleDecided}>Answer</button>
         </section>
     )
 }
