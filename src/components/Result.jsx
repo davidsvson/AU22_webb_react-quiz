@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 const Result = (props) => {
     return (
         <section>
             <h2>Resultat</h2>
             <p>Du fick {props.score} rätta svar!</p>
-            <button onClick={props.restartQuiz}>Börja om</button>
+            <Link to="/">
+                <button onClick={props.restartQuiz}>Börja om</button>
+            </Link>
         </section>
     )
 }

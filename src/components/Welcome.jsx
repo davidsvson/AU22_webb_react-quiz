@@ -1,4 +1,7 @@
 
+import { Link } from 'react-router-dom';
+ 
+
 const Welcome = (props) => {
 
 
@@ -6,7 +9,9 @@ const Welcome = (props) => {
         <section>
             <h2>Välkommen till denna Quiz!</h2>
             <p>Vill du sätt igång?</p>
-            <button onClick={props.nextScreen}>Ja!</button>
+            <Link to="/game">
+                <button >Ja!</button>
+            </Link>
         </section>
     )
 }
